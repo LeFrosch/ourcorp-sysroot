@@ -9,10 +9,7 @@ llvm.toolchain(
     name = "hermetic_llvm",
     llvm_version = "19.1.0",
     cxx_standard = {"": "c++20"},
-    stdlib = {
-        "linux-x86_64": "libc++",
-        "linux-aarch64": "libc++",
-    },
+    stdlib = {"linux-x86_64": "libc++"},
 )
 llvm.sysroot(
     name = "hermetic_llvm",
@@ -20,3 +17,5 @@ llvm.sysroot(
     targets = ["linux-x86_64"],
 )
 use_repo(llvm, "hermetic_llvm")
+
+register_toolchains("@hermetic_llvm//:all")
